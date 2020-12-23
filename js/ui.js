@@ -22,8 +22,8 @@ class UI {
             } else {
                 doneIconHtml = `<a href="#" id="todo-item-done-${i}"><img src="../icons/circle.svg" alt="" width="24" height="24"></a>`;
             }
-            deleteIconHtml = `<a href="#" id="todo-item-delete-${i}"><img src="../icons/circle.svg" alt="" width="24" height="24"></a>`;
-            ulHtml += `<li id="todo-item-${i}"><div><span>${doneIconHtml}</span><span>${this.todoItems[i].title}</span><span>${deleteIconHtml}</span></div></li>`;
+            deleteIconHtml = `<a href="#" id="todo-item-delete-${i}"><img src="../icons/trash2.svg" alt="" width="24" height="24"></a>`;
+            ulHtml += `<li id="todo-item-${i}" class="todo-list-item"><div class="item"><span class="item-done">${doneIconHtml}</span><span class="item-title">${this.todoItems[i].title}</span><span class="item-delete">${deleteIconHtml}</span></div></li>`;
         }
         this.todoItemsListE.innerHTML = ulHtml;
         this.addEventListeners();

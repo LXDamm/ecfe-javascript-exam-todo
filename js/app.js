@@ -40,7 +40,6 @@ class App {
     run() {
         this.addEventListeners();
         this.fetchTodo().then((todoData) => {
-            console.log(todoData);
             if (todoData) {
                 this.todoItems = todoData.items;
                 this.update();

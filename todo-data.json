@@ -1,5 +1,7 @@
 {
     "items": [
-        { "title": "Go shopping", "done": false }
+        { "title": "Go shopping", "done": false },
+        { "title": "Watch The Expanse", "done": false },
+        { "title": "Fix present for mom", "done": true }
     ]
 }
