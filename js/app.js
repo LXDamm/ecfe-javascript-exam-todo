@@ -11,6 +11,13 @@ class App {
             this.addTodoItem(this.ui.getTodoInput());
             this.update();
         });
+        document.addEventListener('todo-list-event-done', (event) => {
+            this.todoItems[event.detail].done = true;
+            this.update();
+        });
+        document.addEventListener('todo-list-event-delete', (event) => {
+            this.todoItems.splice(event.detail, 1);
+        });
     }
     addTodoItem(providedTitle) {
         const item = { title: providedTitle, checked: false };
@@ -35,7 +42,8 @@ class App {
             console.log(todoData);
             if (todoData) {
                 this.todoItems = todoData.items;
-                this.ui.renderTodoItems(todoData.items);
+                this.ui.updateTodoItems(this.todoItems);
+                this.ui.renderTodoItems();
             }
         });
     }
