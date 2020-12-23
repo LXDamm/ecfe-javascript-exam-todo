@@ -18,7 +18,7 @@ class UI {
             let doneIconHtml;
             let deleteIconHtml;
             if (this.todoItems[i].done) {
-                doneIconHtml = '<img src="../icons/check2-circle.svg" alt="" width="24" height="24">';
+                doneIconHtml = `<a href="#" id="todo-item-done-${i}"><img src="../icons/check2-circle.svg" alt="" width="24" height="24"></a>`;
             } else {
                 doneIconHtml = `<a href="#" id="todo-item-done-${i}"><img src="../icons/circle.svg" alt="" width="24" height="24"></a>`;
             }
@@ -32,7 +32,6 @@ class UI {
         for (let i = 0; i < this.todoItems.length; i++) {
             let doneE = document.querySelector('#todo-item-done-' + i);
             doneE.addEventListener('click', (event) => {
-                this.todoItems[i].done = true;
                 const doneEvent = new CustomEvent('todo-list-event-done', { detail: i });
                 document.dispatchEvent(doneEvent);
             });

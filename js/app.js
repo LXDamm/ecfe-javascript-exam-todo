@@ -12,17 +12,17 @@ class App {
             this.update();
         });
         document.addEventListener('todo-list-event-done', (event) => {
-            this.todoItems[event.detail].done = true;
+            this.todoItems[event.detail].done = !this.todoItems[event.detail].done;
             this.update();
         });
         document.addEventListener('todo-list-event-delete', (event) => {
             this.todoItems.splice(event.detail, 1);
+            this.update();
         });
     }
     addTodoItem(providedTitle) {
         const item = { title: providedTitle, checked: false };
         this.todoItems.push(item);
-        console.log(this.todoItems);
     }
     async fetchTodo() {
         try {
@@ -34,7 +34,8 @@ class App {
 
     }
     update() {
-        this.ui.renderTodoItems(this.todoItems);
+        this.ui.updateTodoItems(this.todoItems);
+        this.ui.renderTodoItems();
     }
     run() {
         this.addEventListeners();
@@ -42,8 +43,7 @@ class App {
             console.log(todoData);
             if (todoData) {
                 this.todoItems = todoData.items;
-                this.ui.updateTodoItems(this.todoItems);
-                this.ui.renderTodoItems();
+                this.update();
             }
         });
     }
