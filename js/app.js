@@ -7,7 +7,15 @@ class App {
         this.ui = new UI();
     }
     addEventListeners() {
-        this.ui.addEventListeners();
+        this.ui.todoAddBtnE.addEventListener('click', (event) => {
+            this.addTodoItem(this.ui.getTodoInput());
+            this.update();
+        });
+    }
+    addTodoItem(providedTitle) {
+        const item = { title: providedTitle, checked: false };
+        this.todoItems.push(item);
+        console.log(this.todoItems);
     }
     async fetchTodo() {
         try {
@@ -18,11 +26,15 @@ class App {
         }
 
     }
+    update() {
+        this.ui.renderTodoItems(this.todoItems);
+    }
     run() {
         this.addEventListeners();
         this.fetchTodo().then((todoData) => {
             console.log(todoData);
             if (todoData) {
+                this.todoItems = todoData.items;
                 this.ui.renderTodoItems(todoData.items);
             }
         });

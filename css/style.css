@@ -1,0 +1,6 @@
+#todo-add-button {
+    background: url('../icons/plus-circle.svg');
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+}

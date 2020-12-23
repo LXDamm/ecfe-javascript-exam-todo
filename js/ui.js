@@ -1,22 +1,29 @@
 class UI {
     constructor() {
+        this.todoTextinputE = document.querySelector('#todo-text-input');
+        this.todoAddBtnE = document.querySelector('#todo-add-button');
         this.todoItemsListE = document.querySelector('#todo-items-list');
-        this.addBtnE = document.querySelector('#todo-add-button');
     }
-    addEventListeners() {
-
+    getTodoInput() {
+        const title = this.todoTextinputE.value;
+        return title;
     }
     renderTodoItems(todoItems) {
-        let html = '';
-        todoItems.forEach(item => {
-            if (item.done) {
-                html += '<img src="./icons/check2-circle.svg" alt="" width="32" height="32">';
+        let ulHtml = '';
+        for (let i = 0; i < todoItems.length; i++) {
+            let doneIconE = document.createElement('a');
+            doneIconE.setAttribute('id', 'todo-item-' + i);
+            if (todoItems[i].done) {
+                doneIconE.innerHTML += '<img src="../icons/check2-circle.svg" alt="" width="24" height="24">';
             } else {
-                html += '<span>-</span>';
+                doneIconE.innerHTML += '<img src="../icons/circle.svg" alt="" width="24" height="24">';
             }
-            html += `<span>${item.title}</span>`;
-        });
-        this.todoItemsListE.innerHTML = html;
+            ulHtml += `<li id="todo-item-${i}"><div><span>${doneIconE}</span><span>${todoItems[i].title}</span></div></li>`;
+        }
+        this.todoItemsListE.innerHTML = ulHtml;
+
+    }
+    addEventListeners() {
     }
 }
 
